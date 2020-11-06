@@ -63,6 +63,7 @@ IPC?=0
 CYASSL?=0
 WOLFSSL?=0
 POLARSSL?=0
+RAW?=0
 
 #IPv6 related
 IPV6?=1
@@ -241,6 +242,7 @@ CORE_OBJ= stack/pico_stack.o \
 
 POSIX_OBJ+= modules/pico_dev_vde.o \
             modules/pico_dev_tun.o \
+	    modules/pico_dev_raw.o \
             modules/pico_dev_ipc.o \
             modules/pico_dev_tap.o \
             modules/pico_dev_mock.o
@@ -317,6 +319,9 @@ ifneq ($(SNTP_CLIENT),0)
 endif
 ifneq ($(TUN),0)
   include rules/tun.mk
+endif
+ifneq ($(RAW),0)
+  include rules/raw.mk
 endif
 ifneq ($(TAP),0)
   include rules/tap.mk

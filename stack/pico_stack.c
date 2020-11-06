@@ -378,7 +378,8 @@ int pico_frame_dst_is_unicast(struct pico_frame *f)
 int pico_datalink_receive(struct pico_frame *f)
 {
     if (f->dev->eth) {
-        /* If device has stack with datalink-layer pass frame through it */
+        //dbg("IS ETH RCV\n");
+	/* If device has stack with datalink-layer pass frame through it */
         switch (f->dev->mode) {
             #ifdef PICO_SUPPORT_802154
             case LL_MODE_IEEE802154:
@@ -405,7 +406,8 @@ int pico_datalink_receive(struct pico_frame *f)
 MOCKABLE int pico_datalink_send(struct pico_frame *f)
 {
     if (f->dev->eth) {
-        switch (f->dev->mode) {
+        //dbg("IS ETH SEND\n");
+       	switch (f->dev->mode) {
             #ifdef PICO_SUPPORT_802154
             case LL_MODE_IEEE802154:
                 return pico_enqueue(pico_proto_6lowpan.q_out, f);
